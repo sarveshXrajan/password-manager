@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='display_all.css') }}"
+    />
+    <title>Password Manager - Display</title>
+  </head>
+  <body>
+    <h1>Display all passwords</h1>
+    <table>
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Username</th>
+          <th>Password</th>
+          <th>Copy</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in range(results|length) %}
+        <tr>
+          <td>{{ results[i][0] }}</td>
+          <td>{{ results[i][1] }}</td>
+          <td>{{ results[i][2] }}</td>
+          <td>
+            <button
+              class="copy-button"
+              onclick="copyToClipboard('{{ results[i][2] }}')"
+            >
+              Copy
+            </button>
+          </td>
+          <td>
+            <form
+              action="{{ url_for('delete_selected', service=results[i][0], username=results[i][1]) }}"
+              method="post"
+            >
+              <button class="delete-button" type="submit">Delete</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <script>
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text);
+      }
+    </script>
+    <button class="back-button">
+      <a href="{{ url_for('main') }}">Go back to homepage</a>
+    </button>
+  </body>
+</html>

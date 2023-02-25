@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='home.css') }}"
+    />
+    <title>Password Manager</title>
+  </head>
+  <body>
+    <h1>My Password Manager</h1>
+    <div class="button-container">
+      <button><a href="{{ url_for('add') }}">Add New Password</a></button>
+      <button>
+        <a href="{{ url_for('display_all') }}">View All Passwords</a>
+      </button>
+      <button>
+        <a href="{{ url_for('search') }}">Search For a Domain</a>
+      </button>
+    </div>
+  </body>
+</html>
